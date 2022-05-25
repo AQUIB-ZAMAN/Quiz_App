@@ -22,7 +22,10 @@ class MyAppState extends State<MyApp> {
 
   void answerQuestion() {
     setState(() {
-      index = index + 1;
+      if (index < questions.length - 1)
+        index = index + 1;
+      else
+        index = 0;
     });
   }
 
@@ -35,11 +38,13 @@ class MyAppState extends State<MyApp> {
       ),
       home: Scaffold(
         appBar: AppBar(
-          title: Text("Home Page"),
+          title: Text("Welcome to the Questions Page"),
         ),
         body: Column(
           children: [
-            Question(text: questions[index]),
+            Question(
+              text: questions[index],
+            ),
             RaisedButton(
               onPressed: answerQuestion,
               child: Text("Option A"),
@@ -53,7 +58,7 @@ class MyAppState extends State<MyApp> {
               child: Text("Option C"),
             ),
             RaisedButton(
-              onPressed: null,
+              onPressed: answerQuestion,
               child: Text("Option D"),
             ),
           ],
