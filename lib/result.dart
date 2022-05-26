@@ -24,13 +24,16 @@ class Result extends StatelessWidget {
     return Center(
       child: Column(
         children: [
-          Text(
-            resultPhrase,
-            style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
+          Container(
+            child: Text(
+              resultPhrase,
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+              textAlign: TextAlign.center,
             ),
-            textAlign: TextAlign.center,
+            padding: EdgeInsets.all(8),
           ),
           FlatButton(
             onPressed: resetQuiz,
