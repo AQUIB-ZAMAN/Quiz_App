@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import './question.dart';
+import './quiz.dart';
+import './result.dart';
 
 void main() {
   runApp(MyApp());
@@ -12,20 +13,48 @@ class MyApp extends StatefulWidget {
 
 class MyAppState extends State<MyApp> {
   var index = 0;
-  List<String> questions = <String>[
-    'World\'s highest hockry ground is located in :',
-    'Who among the following is the first black formula one world champion :',
-    'Which sport does Lalita Babar represent :',
-    'Who was named as the World Cup Ambassador during 2015 ICC World Cup :',
-    'What kind of racing event was supported by the UCI ProTour :',
+  var totalScore = 0;
+  final questions = [
+    {
+      'question': 'What\'s your favorite color?',
+      'answers': [
+        {'text': 'Black', 'score': 10},
+        {'text': 'Red', 'score': 5},
+        {'text': 'Green', 'score': 3},
+        {'text': 'White', 'score': 1},
+      ],
+    },
+    {
+      'question': 'What\'s your favorite animal?',
+      'answers': [
+        {'text': 'Rabbit', 'score': 10},
+        {'text': 'Snake', 'score': 5},
+        {'text': 'Elephant', 'score': 3},
+        {'text': 'Lion', 'score': 1},
+      ],
+    },
+    {
+      'question': 'What\'s your favorite instructor?',
+      'answers': [
+        {'text': 'Max', 'score': 1},
+        {'text': 'Max', 'score': 1},
+        {'text': 'Max', 'score': 1},
+        {'text': 'Max', 'score': 1},
+      ],
+    },
   ];
 
-  void answerQuestion() {
+  void answerQuestion(int score) {
     setState(() {
-      if (index < questions.length - 1)
-        index = index + 1;
-      else
-        index = 0;
+      totalScore += score;
+      if (index < questions.length - 1) index = index + 1;
+    });
+  }
+
+  void resetQuiz() {
+    setState(() {
+      index = 0;
+      totalScore = 0;
     });
   }
 
@@ -41,29 +70,14 @@ class MyAppState extends State<MyApp> {
         appBar: AppBar(
           title: Text("Welcome to the Questions Page"),
         ),
-        body: Column(
-          children: [
-            Question(
-              text: questions[index],
-            ),
-            RaisedButton(
-              onPressed: answerQuestion,
-              child: Text("Option A"),
-            ),
-            RaisedButton(
-              onPressed: answerQuestion,
-              child: Text("Option B"),
-            ),
-            RaisedButton(
-              onPressed: answerQuestion,
-              child: Text("Option C"),
-            ),
-            RaisedButton(
-              onPressed: answerQuestion,
-              child: Text("Option D"),
-            ),
-          ],
-        ),
+        backgroundColor: Color.fromARGB(255, 181, 187, 239),
+        body: index < questions.length
+            ? Quiz(
+                answerQuestion: answerQuestion,
+                index: index,
+                questions: questions,
+              )
+            : Result(resultScore: totalScore, resetQuiz: resetQuiz),
       ),
     );
   }
