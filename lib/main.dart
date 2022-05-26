@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import './question.dart';
-import './answer.dart';
+import './quiz.dart';
+// import './result.dart';
 
 void main() {
   runApp(MyApp());
@@ -41,10 +41,7 @@ class MyAppState extends State<MyApp> {
 
   void answerQuestion() {
     setState(() {
-      if (index < questions.length - 1)
-        index = index + 1;
-      else
-        index = 0;
+      if (index < questions.length - 1) index = index + 1;
     });
   }
 
@@ -61,16 +58,17 @@ class MyAppState extends State<MyApp> {
           title: Text("Welcome to the Questions Page"),
         ),
         backgroundColor: Color.fromARGB(255, 181, 187, 239),
-        body: Column(
-          children: [
-            Question(
-              text: questions[index]['question'],
-            ),
-            ...(questions[index]['answer'] as List<String>).map((answer) {
-              return Answer(answerQuestion, answer);
-            }).toList(),
-          ],
-        ),
+        body: index < questions.length
+            ? Quiz(
+                answerQuestion: answerQuestion,
+                index: index,
+                questions: questions,
+              )
+            : Center(
+                child: Text(
+                  'You are done.',
+                ),
+              ),
       ),
     );
   }

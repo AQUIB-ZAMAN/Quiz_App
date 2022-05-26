@@ -11,7 +11,7 @@ class Answer extends StatelessWidget {
       child: FractionallySizedBox(
         child: RaisedButton(
           onPressed: change,
-          child: Text("Option A"),
+          child: Text(answer),
           hoverColor: Colors.blue[700],
           hoverElevation: 8,
           textColor: Colors.black,
