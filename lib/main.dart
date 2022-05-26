@@ -45,9 +45,10 @@ class MyAppState extends State<MyApp> {
   ];
 
   void answerQuestion(int score) {
+    if (index < questions.length) totalScore += score;
+
     setState(() {
-      totalScore += score;
-      if (index < questions.length - 1) index = index + 1;
+      index = index + 1;
     });
   }
 

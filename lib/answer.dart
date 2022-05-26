@@ -3,15 +3,14 @@ import 'package:flutter/material.dart';
 class Answer extends StatelessWidget {
   final change;
   final answer;
-  final score;
-  Answer(this.change, this.answer, this.score);
+  Answer(this.change, this.answer);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       child: FractionallySizedBox(
         child: RaisedButton(
-          onPressed: change(score),
+          onPressed: change,
           child: Text(answer),
           hoverColor: Colors.blue[700],
           hoverElevation: 8,
