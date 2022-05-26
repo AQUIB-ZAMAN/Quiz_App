@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import './question.dart';
+import './answer.dart';
 
 void main() {
   runApp(MyApp());
@@ -12,12 +13,30 @@ class MyApp extends StatefulWidget {
 
 class MyAppState extends State<MyApp> {
   var index = 0;
-  List<String> questions = <String>[
-    'World\'s highest hockry ground is located in :',
-    'Who among the following is the first black formula one world champion :',
-    'Which sport does Lalita Babar represent :',
-    'Who was named as the World Cup Ambassador during 2015 ICC World Cup :',
-    'What kind of racing event was supported by the UCI ProTour :',
+  var questions = [
+    {
+      'question': 'World\'s highest hockry ground is located in :',
+      'answer': [],
+    },
+    {
+      'question':
+          'Who among the following is the first black formula one world champion :',
+      'answer': [],
+    },
+    {
+      'question': 'Which sport does Lalita Babar represent :',
+      'answer': [],
+    },
+    {
+      'question':
+          'Who was named as the World Cup Ambassador during 2015 ICC World Cup :',
+      'answer': [],
+    },
+    {
+      'question':
+          'What kind of racing event was supported by the UCI ProTour :',
+      'answer': [],
+    },
   ];
 
   void answerQuestion() {
@@ -41,26 +60,23 @@ class MyAppState extends State<MyApp> {
         appBar: AppBar(
           title: Text("Welcome to the Questions Page"),
         ),
+        backgroundColor: Color.fromARGB(255, 181, 187, 239),
         body: Column(
           children: [
             Question(
               text: questions[index],
             ),
-            RaisedButton(
-              onPressed: answerQuestion,
-              child: Text("Option A"),
+            Answer(
+              answerQuestion,
             ),
-            RaisedButton(
-              onPressed: answerQuestion,
-              child: Text("Option B"),
+            Answer(
+              answerQuestion,
             ),
-            RaisedButton(
-              onPressed: answerQuestion,
-              child: Text("Option C"),
+            Answer(
+              answerQuestion,
             ),
-            RaisedButton(
-              onPressed: answerQuestion,
-              child: Text("Option D"),
+            Answer(
+              answerQuestion,
             ),
           ],
         ),
