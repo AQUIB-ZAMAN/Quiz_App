@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 // creating a new custom widget
 class Question extends StatelessWidget {
-  String text;
+  var text;
   Question({this.text: ""});
 
   @override

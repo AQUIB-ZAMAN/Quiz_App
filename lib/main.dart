@@ -13,7 +13,7 @@ class MyApp extends StatefulWidget {
 
 class MyAppState extends State<MyApp> {
   var index = 0;
-  var questions = [
+  final questions = [
     {
       'question': 'World\'s highest hockry ground is located in :',
       'answer': [],
@@ -64,20 +64,11 @@ class MyAppState extends State<MyApp> {
         body: Column(
           children: [
             Question(
-              text: questions[index],
+              text: questions[index]['question'],
             ),
-            Answer(
-              answerQuestion,
-            ),
-            Answer(
-              answerQuestion,
-            ),
-            Answer(
-              answerQuestion,
-            ),
-            Answer(
-              answerQuestion,
-            ),
+            ...(questions[index]['answer'] as List<String>).map((answer) {
+              return Answer(answerQuestion, answer);
+            }).toList(),
           ],
         ),
       ),

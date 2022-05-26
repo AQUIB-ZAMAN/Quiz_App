@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 
 class Answer extends StatelessWidget {
   final change;
-  Answer(this.change);
+  final answer;
+  Answer(this.change, this.answer);
 
   @override
   Widget build(BuildContext context) {
